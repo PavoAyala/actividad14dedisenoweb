@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->timestamp('date_time');
             $table->text('body');
             $table->string('classification');
             $table->timestamps();

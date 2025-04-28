@@ -9,7 +9,7 @@ class NoteWebController extends Controller
 {
     public function index()
     {
-        $notes = Note::orderBy('created_at', 'desc')->get();
+        $notes = Note::latest()->get();
         return view('notes.index', compact('notes'));
     }
 
@@ -24,17 +24,10 @@ class NoteWebController extends Controller
             'title' => 'required',
             'author' => 'required',
             'body' => 'required',
-            'classification' => 'required',
+            'classification' => 'required'
         ]);
 
-        Note::create([
-            'title' => $request->title,
-            'author' => $request->author,
-            'date_time' => now(),
-            'body' => $request->body,
-            'classification' => $request->classification,
-        ]);
-
+        Note::create($request->all());
         return redirect()->route('notes.index')->with('success', 'Nota creada exitosamente.');
     }
 
@@ -49,16 +42,10 @@ class NoteWebController extends Controller
             'title' => 'required',
             'author' => 'required',
             'body' => 'required',
-            'classification' => 'required',
+            'classification' => 'required'
         ]);
 
-        $note->update([
-            'title' => $request->title,
-            'author' => $request->author,
-            'body' => $request->body,
-            'classification' => $request->classification,
-        ]);
-
+        $note->update($request->all());
         return redirect()->route('notes.index')->with('success', 'Nota actualizada exitosamente.');
     }
 

@@ -30,14 +30,8 @@
 
                 <div class="mb-3">
                     <label for="classification" class="form-label">Clasificación</label>
-                    <select class="form-select @error('classification') is-invalid @enderror" 
-                            id="classification" name="classification" required>
-                        <option value="">Selecciona una clasificación</option>
-                        <option value="Personal" {{ $note->classification == 'Personal' ? 'selected' : '' }}>Personal</option>
-                        <option value="Trabajo" {{ $note->classification == 'Trabajo' ? 'selected' : '' }}>Trabajo</option>
-                        <option value="Estudio" {{ $note->classification == 'Estudio' ? 'selected' : '' }}>Estudio</option>
-                        <option value="Recordatorio" {{ $note->classification == 'Recordatorio' ? 'selected' : '' }}>Recordatorio</option>
-                    </select>
+                    <input type="text" class="form-control @error('classification') is-invalid @enderror" 
+                           id="classification" name="classification" value="{{ old('classification', $note->classification) }}" required>
                     @error('classification')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -54,10 +48,10 @@
 
                 <div class="d-flex justify-content-between">
                     <a href="{{ route('notes.index') }}" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> Volver
+                        <i class="fas fa-arrow-left me-2"></i>Volver
                     </a>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Actualizar Nota
+                        <i class="fas fa-save me-2"></i>Actualizar Nota
                     </button>
                 </div>
             </form>

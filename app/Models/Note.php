@@ -12,7 +12,6 @@ class Note extends Model
     protected $fillable = [
         'title',
         'author',
-        'date_time',
         'body',
         'classification'
     ];

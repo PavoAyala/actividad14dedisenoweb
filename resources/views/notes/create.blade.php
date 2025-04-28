@@ -29,14 +29,8 @@
 
                 <div class="mb-3">
                     <label for="classification" class="form-label">Clasificación</label>
-                    <select class="form-select @error('classification') is-invalid @enderror" 
-                            id="classification" name="classification" required>
-                        <option value="">Selecciona una clasificación</option>
-                        <option value="Personal">Personal</option>
-                        <option value="Trabajo">Trabajo</option>
-                        <option value="Estudio">Estudio</option>
-                        <option value="Recordatorio">Recordatorio</option>
-                    </select>
+                    <input type="text" class="form-control @error('classification') is-invalid @enderror" 
+                           id="classification" name="classification" value="{{ old('classification') }}" required>
                     @error('classification')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -53,10 +47,10 @@
 
                 <div class="d-flex justify-content-between">
                     <a href="{{ route('notes.index') }}" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> Volver
+                        <i class="fas fa-arrow-left me-2"></i>Volver
                     </a>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Guardar Nota
+                        <i class="fas fa-save me-2"></i>Guardar Nota
                     </button>
                 </div>
             </form>
