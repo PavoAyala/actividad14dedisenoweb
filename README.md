@@ -7,7 +7,6 @@ Este proyecto es una aplicaci√≥n Laravel para gestionar notas personales a trav√
 1. Clonar el repositorio:
 ```bash
 git clone https://github.com/tu-usuario/personal-notes-api.git
-cd personal-notes-api
 ```
 
 2. Instalar dependencias:
