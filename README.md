@@ -39,11 +39,133 @@ El servidor se ejecutará en: `http://localhost:8000`
 
 ## Endpoints de la API
 
-- **POST /api/notes**: Crear una nueva nota
-- **GET /api/notes**: Obtener todas las notas
-- **GET /api/notes/{id}**: Obtener una nota específica por ID
-- **PUT /api/notes/{id}**: Actualizar una nota por ID
-- **DELETE /api/notes/{id}**: Eliminar una nota por ID
+### 1. Obtener todas las notas (GET)
+- **URL**: `http://localhost:8000/api/notes`
+- **Método**: GET
+- **Headers**:
+  - Accept: application/json
+  - Content-Type: application/json
+- **Respuesta exitosa**:
+```json
+[
+    {
+        "id": 1,
+        "title": "Título de la nota",
+        "author": "Nombre del autor",
+        "body": "Contenido de la nota",
+        "classification": "Clasificación",
+        "created_at": "2024-04-28T12:00:00.000000Z",
+        "updated_at": "2024-04-28T12:00:00.000000Z"
+    }
+]
+```
+
+### 2. Crear una nueva nota (POST)
+- **URL**: `http://localhost:8000/api/notes`
+- **Método**: POST
+- **Headers**:
+  - Accept: application/json
+  - Content-Type: application/json
+- **Body**:
+```json
+{
+    "title": "Nota de prueba",
+    "author": "Autor de prueba",
+    "body": "Contenido de prueba",
+    "classification": "Prueba"
+}
+```
+- **Respuesta exitosa**:
+```json
+{
+    "status": "success",
+    "message": "Nota creada exitosamente",
+    "data": {
+        "id": 1,
+        "title": "Nota de prueba",
+        "author": "Autor de prueba",
+        "body": "Contenido de prueba",
+        "classification": "Prueba",
+        "created_at": "2024-04-28T12:00:00.000000Z",
+        "updated_at": "2024-04-28T12:00:00.000000Z"
+    }
+}
+```
+
+### 3. Obtener una nota específica (GET)
+- **URL**: `http://localhost:8000/api/notes/{id}`
+- **Método**: GET
+- **Headers**:
+  - Accept: application/json
+  - Content-Type: application/json
+- **Respuesta exitosa**:
+```json
+{
+    "id": 1,
+    "title": "Nota de prueba",
+    "author": "Autor de prueba",
+    "body": "Contenido de prueba",
+    "classification": "Prueba",
+    "created_at": "2024-04-28T12:00:00.000000Z",
+    "updated_at": "2024-04-28T12:00:00.000000Z"
+}
+```
+
+### 4. Actualizar una nota (PUT)
+- **URL**: `http://localhost:8000/api/notes/{id}`
+- **Método**: PUT
+- **Headers**:
+  - Accept: application/json
+  - Content-Type: application/json
+- **Body**:
+```json
+{
+    "title": "Nota actualizada",
+    "author": "Nuevo autor",
+    "body": "Nuevo contenido",
+    "classification": "Actualizada"
+}
+```
+- **Respuesta exitosa**:
+```json
+{
+    "id": 1,
+    "title": "Nota actualizada",
+    "author": "Nuevo autor",
+    "body": "Nuevo contenido",
+    "classification": "Actualizada",
+    "created_at": "2024-04-28T12:00:00.000000Z",
+    "updated_at": "2024-04-28T12:30:00.000000Z"
+}
+```
+
+### 5. Eliminar una nota (DELETE)
+- **URL**: `http://localhost:8000/api/notes/{id}`
+- **Método**: DELETE
+- **Headers**:
+  - Accept: application/json
+  - Content-Type: application/json
+- **Respuesta exitosa**: Código 204 (No Content)
+
+## Capturas de Pantalla de Postman
+
+### 1. GET todas las notas
+![GET todas las notas](Imagenes/get-all-notes.png)
+
+### 2. POST crear nota
+![POST crear nota](Imagenes/post-create-note.png)
+
+### 3. GET nota específica
+![GET nota específica](Imagenes/get-specific-note.png)
+
+### 4. PUT antes de actualizar nota
+![PUT actualizar nota](Imagenes/put-before-update-note.png)
+
+### 5. PUT actualizar nota
+![PUT actualizar nota](Imagenes/put-update-note.png)
+
+### 6. DELETE eliminar nota
+![DELETE eliminar nota](Imagenes/delete-note.png)
 
 ## Estructura de una Nota
 

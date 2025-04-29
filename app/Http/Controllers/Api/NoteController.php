@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class NoteController extends Controller
 {
@@ -21,16 +22,52 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        $note = Note::create($request->all());
-        return response()->json($note, 201);
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'body' => 'required|string',
+            'classification' => 'required|string|max:255'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error de validación',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        try {
+            $note = Note::create($request->all());
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Nota creada exitosamente',
+                'data' => $note
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error al crear la nota',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Note $note)
+    public function show($id)
     {
-        return $note;
+        $note = Note::find($id);
+        
+        if (!$note) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Nota no encontrada'
+            ], 404);
+        }
+
+        return response()->json($note);
     }
 
     /**
